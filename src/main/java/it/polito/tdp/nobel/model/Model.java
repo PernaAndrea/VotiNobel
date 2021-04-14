@@ -50,7 +50,7 @@ public class Model {
 			}
 			//se non rientro nei casi di terminazione ....
 			// partenza[L] è da aggiungere oppure no ? provo entrambe le cose 
-			partenza.add(partenza.get(L));
+			parziale.add(partenza.get(L));
 			cerca2(parziale, L+1, m);
 			
 			parziale.remove(partenza.get(L));
