@@ -1,0 +1,70 @@
+
+INPUT:
+	- Insieme di oggetti di tipo Esame ( partenza )
+	- # (num) di crediti (m)
+	
+OUTPUT:
+	- Insieme (Set) di Esame , sottoinsieme di partenza, 
+	tale che la :
+			- somma di Esame.crediti() == m 
+			- media Esame.voto() sia MAX
+			
+APPROCCIO 1 ( il piu "stupido" )        COMPLESSITA N!
+
+Ad ogni livello della ricorsione , aggiungo un esame --> devo decidere quale , li provo tutti
+
+	-Soluzione Parziale
+			Parziale = sottoinsiem di esattamnete L elementi
+	-Generazione Soluzione Parziale
+			per tutti i casi che non ho ancora considerato ( esami non ancora compresi in parziale ) :
+				* provo ad aggiungere
+				* faccio andare avanti la ricorsione
+				* faccio backtracking
+				
+			L = 0 --> ho N scelte possibili 
+				parziale = { e1 }
+					L = 1 
+						parziale = { e1 , e2 }
+						parziale = { e1 , e3 }
+				parziale = { e2 }
+					L = 1
+						parziale = { e2 , e1 }
+						parziale = { e2 , e3 }
+				[....]
+				parziale = { en }
+				
+	-Casi Terminali
+		
+	 ->	L = N ( ho considerato tutti gli esami e non ci sono piu esami da aggiungere ) 
+		Dobbiamo controllare la soluzione parziale : 
+			* se parziale.sommacrediti == m ( potrebbe essere buona )
+			   - se parziale.media() > di tutte le medie viste fino ad ora --> tengo traccia di parziale
+			* se parziale.somma() != m
+			   - abbandono la ricorsione 
+	 -> parziale.sommaCrediti() >= m ( mi fermo subito!)
+	 		* se > m --> scarto parziale e non vado avanti
+	 		* se = m --> controllo la soluzione parzile ( cosa fatta 7 righe prima ! nel caso L=N )
+		
+			   
+APPROCCIO 2      COMPLESSITA = 2^N ( piu basso di quello di prima
+ad ogni livello mi chiedo se l'esame lo inserisco o non lo inserisco 
+(come se fosse un problema di Programmazione lineare intera )
+( facendo cosi evito di includere nella mia soluzione parziali uguali come ad esempio facevo prima :
+
+			{		parziale = { e1 , e2 }
+					parziale = { e2 , e1 }		}
+					
+- LIVELLO DELLA RICORSIONE ( L )
+	--> indica quale corso sto decidenso di mettere ( o non mettere ) nella soluzione 
+	
+	supponiamo di avere partenza = { e1,e2,e3,e4,...,en}
+	L = 0 -> considero e1
+		* lo metto --> parziale = { e1 }
+			L = 1 -> considero e2 
+				* lo metto --> parziale = { e1,e2 }
+				* non lo metto --> parziale = { e1 }
+		
+		* non lo metto --> parziale = {  }   DA rIVEDERE E sbagliata la parte scritta qui sotto
+			L = 1 -> considero e2 
+				* lo metto --> parziale = { e1,e2 }
+				* non lo metto --> parziale = { e1 }			
