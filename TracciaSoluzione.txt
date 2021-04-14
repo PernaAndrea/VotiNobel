@@ -64,7 +64,7 @@ ad ogni livello mi chiedo se l'esame lo inserisco o non lo inserisco
 				* lo metto --> parziale = { e1,e2 }
 				* non lo metto --> parziale = { e1 }
 		
-		* non lo metto --> parziale = {  }   DA rIVEDERE E sbagliata la parte scritta qui sotto
+		* non lo metto --> parziale = {  }  
 			L = 1 -> considero e2 
 				* lo metto --> parziale = { e2 }
 					[ ... ] 
